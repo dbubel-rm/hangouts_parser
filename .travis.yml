@@ -1,0 +1,34 @@
+language: go
+sudo: false
+matrix:
+  include:
+  - go: 1.x
+    env: LATEST=true
+  - go: 1.5
+  - go: 1.6
+  - go: 1.7
+  - go: tip
+  allow_failures:
+  - go: tip
+before_install:
+- go get github.com/mitchellh/gox
+install:
+-
+script:
+  - go get -t -v ./...
+  - go vet $(go list ./... | grep -v /vendor/)
+  - go test -v -race ./...
+  - if [ "${LATEST}" = "true" ]; then gox -os="windows linux darwin" -arch="amd64" -verbose ./...; fi
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: aAt81Im9wh5NgmBRIWXcitrBVOhvOtjreQMfdhgaJuQCkmExwYG3V2zELH11F/xkzju6bay/hpvdvnoE3GAYMDf1af3t7UCpxbu+ZgvgciCsUcTLNCVdssAI0hEj0t6ksSblhB09X4U9RkVZA+o5q0/gLs68Q0xKKR8a9muv025MkXfmktJU/fo86Gl2c1zEKpTo6rjotCzllAZCTNi26Ph4ZZCPVwwZEA/T8HpxBjGnfWnQ1qtr0hWEcQvE4Skxhf5VWhtxzPQL2hYGZ2VpSnWYaTz2SfWVYshZ7u8KuDEP68FlkgYIY40+R4aWjaUn2DhjGCCYxDBQ9dmkcC7ZIp4QSEl2/XGlRxs7BTyRqZBjs06CNnGMMpzBwidxHlyyxEIDADKgDDkdIX2bi3o1CvZG5h7/j60vcodPfI600w5imeS7YkSsE0/c9VCLUZApmR527JHMXt6ZWqa7Fp+FBYLR6fWFIffcqQ5T2STOWwSrthZ5ClG/cw4q6YEHNJJy0aUKJu5Jlx26pe0Fd9RG1M7pK9Z6advRcGSO71G5+egaeW36FqZEmxNg0pWpDAzyx9Io8XE0vyQv1TXyKtX1CP/b+sNojAAVRWYkleLtHYPR5HHwmH30onmgXeaVN7Uc9+L6XZSKxZjGUe6KtViI5L7+iX9jZgcJyh4xacMY88U=
+  file:
+    - hangouts_parser_windows_amd64.exe
+    - hangouts_parser_linux_amd64
+    - hangouts_parser_darwin_amd64
+  on:
+    repo: engineerbeard/hangouts_parser
+    condition: $LATEST = true
+    tags: true

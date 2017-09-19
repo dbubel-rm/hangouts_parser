@@ -1,2 +1,10 @@
-# hangouts_parser
-extract data from google hangout json file
+# Google Hangout JSON parser.
+Extract data from google hangout json file. At this point it only extracts
+conversation data. If you dont wish to compile yourself, just grab the latest build from
+the release tab.
+### Format
+* timestamp, conversation_id, participants, text
+### Usage:
+* ./hangout_parser -jsonfile=your_json_file.json > outputfile.csv
+
+
