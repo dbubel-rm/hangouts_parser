@@ -7,6 +7,6 @@ the release tab.
 ### Format
 * timestamp, conversation_id, participants, text
 ### Usage:
-* ./hangout_parser -jsonfile=your_json_file.json > outputfile.csv
+* ./<platform>_hangout_parser -jsonfile=your_json_file.json > outputfile.csv
 
 
