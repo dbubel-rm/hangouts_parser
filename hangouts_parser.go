@@ -130,6 +130,7 @@ func (h *HangoutJson) GetAllChatText() {
 		}
 	}
 }
+
 func main() {
 	var jsonfile string
 	flag.StringVar(&jsonfile, "jsonfile","", "Google hangout JSON file to parse.")

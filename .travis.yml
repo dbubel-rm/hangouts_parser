@@ -4,9 +4,6 @@ matrix:
   include:
   - go: 1.x
     env: LATEST=true
-  - go: 1.5
-  - go: 1.6
-  - go: 1.7
   - go: tip
   allow_failures:
   - go: tip
@@ -15,7 +12,7 @@ before_install:
 install:
 - #skip
 script:
-    - go get -t -v ./...
+    #- go get -t -v ./...
     #- go vet $(go list ./... | grep -v /vendor/)
     #- go test -v -race ./...
     - if [ "${LATEST}" = "true" ]; then gox -os="windows linux darwin" -arch="amd64" -verbose ./...; fi
