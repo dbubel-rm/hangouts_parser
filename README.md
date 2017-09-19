@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/engineerbeard/hangouts_parser.svg?branch=master)](https://travis-ci.org/engineerbeard/hangouts_parser)
+
 # Google Hangout JSON parser.
 Extract data from google hangout json file. At this point it only extracts
 conversation data. If you dont wish to compile yourself, just grab the latest build from
